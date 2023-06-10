@@ -1,0 +1,37 @@
+<?php
+// Retrieve form data
+$name = $_POST['name'];
+$pizzaSize = $_POST['pizza_size'];
+$toppings = isset($_POST['toppings']) ? $_POST['toppings'] : [];
+$instructions = $_POST['instructions'];
+
+// Store data in the database
+$servername = 'localhost';
+$username = 'your_username';
+$password = 'your_password';
+$dbname = 'your_database_name';
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection             
+if ($conn->connect_error) {
+    die('Connection failed: ' . $conn->connect_error);                
+}                                   
+                                     
+// Prepare and execute the SQL INSERT statement
+$stmt = $conn->prepare('INSERT INTO orders (name, pizza_size, toppings, instructions) VALUES (?, ?, ?, ?)');
+$stmt->bind_param('ssss', $name, $pizzaSize, implode(',', $toppings), $instructions);
+$stmt->execute();
+
+// Close the statement and the connection
+$stmt->close();
+$conn->close();
+
+// Display the stored content
+echo '<h2>Thank you for your order!</h2>';
+echo '<p>Name: ' . $name . '</p>';
+echo '<p>Pizza Size: ' . $pizzaSize . '</p>';
+echo '<p>Toppings: ' . implode(', ', $toppings) . '</p>';
+echo '<p>Special Instructions: ' . $instructions . '</p>';
+?>

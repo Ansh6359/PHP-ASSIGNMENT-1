@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"> <!--the  html tag-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Site</title> <!--the main website-->
+    <meta name="description" content="this week we will learning with flexbook">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="index.css"> <!--the link of index.css file-->
+</head>
+
+<body>
+    <form action="index.php" method="POST"> <!--php file attached-->
+        <h2>Pizza Order Form</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+
+        <label>Pizza Size:</label>
+        <select name="pizza_size">
+            <option value="small">Small</option> <!--three types of pizza type given by select options-->
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <label>Toppings:</label><br>
+        <input type="checkbox" name="toppings[]" value="pepperoni">Pepperoni<br>
+        <input type="checkbox" name="toppings[]" value="mushrooms">Mushrooms<br>
+        <input type="checkbox" name="toppings[]" value="onions">Onions<br>
+
+        <label for="instructions">Special Instructions:</label><br>
+        <textarea id="instructions" name="instructions"></textarea>
+
+        <input type="submit" value="Place Order">
+    </form>
+</body>
+
+</html>
